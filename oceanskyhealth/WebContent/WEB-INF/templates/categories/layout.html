@@ -1,0 +1,108 @@
+<div class="alert alert-error" ng-show="catCtrl.error">
+    {{catCtrl.errorMessage}}
+</div>
+
+<form class="form-horizontal">
+	<table class="table table-bordered ">
+    <tr>
+    	<td>          
+		    <div class="control-group">
+		        <label class="control-label" for="inputPcatName">Parent Category Name</label>
+		        <div class="controls">
+		            <input type="text" id="inputPcatName" ng-model="catCtrl.createPcat.name" placeholder="Parent Category Name" required="required" min="2" />
+		        </div>
+		    </div>
+		</td>	
+		<td>
+			 <div class="control-group">
+		        <div class="controls" align="left">
+		            <button type="button" class="btn btn-primary" ng-disabled="!catCtrl.createPcat.name" ng-hide="editMode" ng-click="catCtrl.addNewPcat(catCtrl.createPcat.name)">Create Parent Category</button>
+		        </div>
+		    </div>
+		</td>
+	</tr>
+	 <tr>
+    	<td>          
+		    <div class="control-group">
+		        <label class="control-label" for="inputCatName">Category Name</label>
+		        <div class="controls">
+		            <input type="text" id="inputCatName" ng-model="catCtrl.createCat.name" placeholder="Category Name" required="required" min="2" />
+		        </div>
+		        
+		        <label class="control-label" for="inputPCatName">Select Parent Category</label>
+		        <div class="controls">
+		            <select id="inputPCatName" ng-options="pcat.name for pcat in catCtrl.pcats" ng-model="catCtrl.selectedPcat" ng-disabled="!catCtrl.createCat.name"></select>
+		        </div>
+		    </div>
+		</td>	
+		<td>
+			 <div class="control-group">
+		        <div class="controls" align="left">
+		            <button type="button" class="btn btn-primary" ng-disabled="!catCtrl.createCat.name || !catCtrl.selectedPcat.name" ng-hide="editMode" ng-click="catCtrl.addNewCat(catCtrl.createCat.name)">Create Category</button>
+		        </div>
+		    </div>
+		</td>
+	</tr>
+	</table>   
+</form>
+ 	
+<hr />
+<h3>Category List</h3>
+<div class="alert alert-info" ng-show="catCtrl.pcats.length == 0">
+    No category found!
+</div>
+<table class="table table-bordered table-striped" ng-show="catCtrl.pcats.length > 0">
+    <thead>
+        <tr>
+           <!--  <th style="text-align: center; width: 25px;">Id</th> -->
+            <th style="text-align: center;">Parent Category Name</th>
+            <th style="text-align: center;">Category Name</th>
+            <!--  <th style="text-align: center;" colspan="2">Action</th>  -->
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="pc in catCtrl.pcats | orderBy:predicate">
+          <!--   <td style="text-align: center;">{{prod.productNo}}</td>  -->
+            <td valign="middle">
+            	<div ng-show="pc.cats.length == 0" >
+		            <table class="table table-bordered table-striped">
+            			<tr>
+            				<td width="50%">{{pc.name}} </td>
+            				<td width="50%" align="center"><button class="btn btn-mini btn-danger" ng-click="catCtrl.removePcat(pc)">Remove</button></td>
+            			</tr>
+            		</table>   
+		        </div>
+		        
+		        <div ng-show="pc.cats.length > 0 ">
+		           {{pc.name}}
+		        </div>
+            
+            </td>            
+            <td>
+            	<div ng-if="pc.cats.length > 0 ">
+		            <table class="table table-bordered table-striped">
+            			<tr ng-repeat="c in pc.cats">
+            				<td width="50%">{{c.name}} </td>
+            				<td width="50%" align="center"><button class="btn btn-mini btn-danger" ng-click="catCtrl.removeCat(c)">Remove</button></td>
+            			</tr>
+            		</table>   
+		        </div>
+            </td>                                      
+           <!-- 
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-danger" ng-click="removePcat(pc.name)"  ng-show="pc.cats.length == 0">Remove</button>
+            </td>
+           -->
+           
+        </tr>
+    </tbody>
+</table>
+
+ <td style="width:100px;text-align: center;">
+          Enter a number:
+    <input type="number" ng-model="catCtrl.number" />
+    <button ng-click="catCtrl.squre()">X<sup>2</sup></button>
+    <button ng-click="catCtrl.cube()">X<sup>3</sup></button>
+    
+    <div>Answer: {{catCtrl.answer}}</div>
+ </td>

@@ -1,0 +1,198 @@
+<div class="alert alert-error" ng-show="prodCtrl.error">
+    {{prodCtrl.errorMessage}}
+</div>
+<form name="prodForm" class="form-horizontal">
+	<table class="table table-bordered ">
+    <tr>
+    	<td>          
+		    <div class="control-group">
+		        <label class="control-label" for="inputName" redstar>Product Name</label>
+		        <div class="controls">
+		            <input type="text" id="inputName" ng-model="prodCtrl.prod.name" placeholder="ProductName" required min="2" />
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputDesc" redstar>Description</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputDesc" ng-model="prodCtrl.prod.descripton" placeholder="Descripton" required min="1" />
+		            <!-- <span class="add-on">km/h</span>  -->
+		        </div>
+		    </div>
+		</td>   
+    	<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputManufacturer" redstar>Manufacturer/Brand</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputManufacturer" ng-model="prodCtrl.prod.manufacturer" placeholder="Manufacturer" required/>
+		        </div>
+		    </div>
+		</td>
+	</tr>
+   	<tr>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputOrigin">Origin/Country</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputOrigin" ng-model="prodCtrl.prod.country" placeholder="Origin"/>
+		        </div>
+		    </div>
+	    </td>
+	
+		<td>
+		    <div class="control-group">
+		    	<label class="control-label" for="inputCategory" redstar>Category</label>
+		    	<table >
+		    		<tr>
+				        <td >
+				        	<select id="inputCategory" ng-options="pcat.name for pcat in prodCtrl.pcats" ng-model="prodCtrl.selectedPcat" required></select>	 
+				        </td>				        	
+				        <td>
+				        	<select ng-options="cat.name for cat in prodCtrl.selectedPcat.cats" onselect="prodCtrl.setProdCat(cat)" ng-model="prodCtrl.selectedCat" required></select>	
+				        </td>
+			        </tr>
+		        </table>
+		    </div>
+	    </td>
+	    <td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputPrice" redstar>Price</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputPrice" ng-model="prodCtrl.prod.price" placeholder="Price" required />
+		        </div>
+		    </div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		    <div class="control-group">
+			    <div class="controls">
+		            <label class="control-label" for="inputNew"> 
+		              	<input id="inputNew" type="checkbox" ng-model="prodCtrl.prod.isNew"/> New Arrival 
+		            </label>
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		    	<div class="controls">
+		        	<label class="control-label" for="inputOnSale">
+		        		<input id="inputOnSale" type="checkbox" ng-model="prodCtrl.prod.onSale" /> OnSale
+		       		</label>
+		       		<label>
+		       			<input type="text" id="inputDiscount" ng-model="prodCtrl.prod.discountRate" ng-hide="!prodCtrl.prod.onSale" placeholder="Discount rate" />
+		       		</label>
+		        </div>
+		    </div>
+    	</td>
+  
+    	<td>
+		    <div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputHot">
+			            <input id="inputHot" type="checkbox" ng-model="prodCtrl.prod.isHot"/> Put on Hot		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	</tr>
+    <tr>
+	   <td>
+	   		<div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputActive">
+			            <input id="inputActive" type="checkbox" ng-model="prodCtrl.prod.active"/> Active		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	   <td colspan="2">
+	   		<div class="control-group">
+	   			<label class="control-label" for="inputPrice">Add Image</label>
+		        	<div class="controls">
+			   			<input type="file" file-model="prodCtrl.myFile"/>
+			    		<!-- <button ng-click="prodCtrl.uploadFile()">upload me</button> -->
+					</div>	
+			</div>  
+	   </td>
+	</tr>
+	</table>
+
+    <div class="control-group">
+        <hr />
+        <div class="controls" align="center">
+            <button type="button" class="btn btn-primary" ng-disabled="!prodCtrl.prod.name || prodForm.$invalid" ng-hide="prodCtrl.editMode" ng-click="prodCtrl.addNewProd()">Add Product</button>
+            <button type="button" class="btn btn-primary" ng-disabled="!prodCtrl.prod.name || prodForm.$invalid" ng-show="prodCtrl.editMode" ng-click="prodCtrl.updateProd()">Save Product</button>
+            <button type="button" class="btn" ng-click="prodCtrl.resetProdForm()">Reset</button>
+        </div>
+    </div>
+</form>
+ 	
+<hr />
+<h3>Products List</h3>
+ <div class="control-group">
+    	<table >
+    		<tr>
+    			<td> 
+    				<label class="control-label" for="inputCategory">View by Category: </label>    			
+    			</td>
+		        <td >
+		        	<select id="inputCategory" ng-options="pcat.name for pcat in prodCtrl.pcats" ng-model="prodCtrl.selectedPcat"></select>	 
+		        </td>				        	
+		        <td>
+		        	<select ng-options="cat.name for cat in prodCtrl.selectedPcat.cats"  ng-change="prodCtrl.loadProdByCat(cat)" ng-model="prodCtrl.selectedCat" required></select>	
+		        </td>
+	        </tr>
+        </table>
+    </div>
+<div class="alert alert-info" ng-show="prodCtrl.products.length == 0">
+    No Products found
+</div>
+<table class="table table-bordered table-striped" ng-show="prodCtrl.products.length > 0">
+    <thead>
+        <tr>
+           <!--  <th style="text-align: center; width: 25px;">Id</th> -->
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Description</th>
+            <th style="text-align: center;">Brand</th>   
+            <th style="text-align: center;">Origin</th>               
+            <th style="text-align: center;">Category</th>
+            <th style="text-align: center;">Price</th>
+            <th style="text-align: center;">New Arrival?</th>            
+            <th style="text-align: center;">OnSale?</th>
+            <th style="text-align: center;">Discount Rate</th>
+            <th style="text-align: center;">Hot Item?</th>    
+            <th style="text-align: center;">Active?</th>                            
+            <th style="text-align: center;">Image</th>            
+            <th style="text-align: center;" colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="prod in prodCtrl.products | orderBy:predicate">
+          <!--   <td style="text-align: center;">{{prod.productNo}}</td>  -->
+            <td>{{prod.name}}</td>
+            <td>{{prod.descripton}}</td>
+            <td>{{prod.manufacturer}}</td>
+            <td>{{prod.country}}</td>
+            <td>{{prod.cat.parent.name}}>>{{prod.cat.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.isNew}}</td>      
+            <td>{{prod.onSale}}</td>    
+            <td>{{prod.discountRate}}</td>
+            <td>{{prod.isHot}}</td>    
+            <td>{{prod.active}}</td>                                      
+            <td style="text-align: center;width: 20px;"><span ng-show="prod.imageId" class="icon-ok"></span></td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-success" ng-click="prodCtrl.editProd(prod)">Edit</button>
+            </td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-danger" ng-click="prodCtrl.removeProd(prod.productNo)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a href="#"><img data-ng-src="images/sushi.jpg" alt="Generic placeholder image" class="img-circle"></a>
+</div>
+

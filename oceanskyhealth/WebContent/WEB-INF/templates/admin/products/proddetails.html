@@ -1,0 +1,91 @@
+<div class="alert alert-error" ng-show="apcDetails.error">
+    {{apcDetails.errorMessage}}
+</div>
+	
+	<div id="prod_detail" layout="row" >
+        <div flex="50" class="grey detail">
+           <label class="control-label">Product Name: </label> {{apcDetails.prod.name}} 
+        </div>
+        <div flex="50" class="grey detail">
+            <label class="control-label">Manufacturer/Brand: </label> {{apcDetails.prod.manufacturer}}
+        </div>
+    </div>
+	
+	<div id="prod_detail" layout="row" >
+        <div flex="50" class="grey detail">
+           <label class="control-label">Origin/Country: </label> {{apcDetails.prod.country}} 
+        </div>
+        <div flex="50" class="grey detail">
+            <label class="control-label">Category: </label> {{apcDetails.prod.cat.parent.name}} >> {{apcDetails.prod.cat.name}}
+        </div>
+    </div>
+        
+    <div id="prod_detail" layout="row" >
+        <div flex="50" class="grey detail">
+           <label class="control-label">New Arrival: </label> {{apcDetails.prod.new}} 
+        </div>
+        <div flex="50" class="grey detail">
+            <label class="control-label">Hot: </label> {{apcDetails.prod.hot}} 
+        </div>
+    </div>
+    
+    <div id="prod_detail" layout="row" >
+        <div flex="50" class="grey detail">
+           <label class="control-label">On Sale: </label> {{apcDetails.prod.onSale}} 
+        </div>
+        <div flex="50" class="grey detail">
+            <label class="control-label">Discount rate: </label> {{apcDetails.prod.discountRate}} 
+        </div>
+    </div>
+    
+    <div id="prod_detail" layout="row" >
+        <div flex="50" class="grey detail">
+           <label class="control-label">Price: </label> {{apcDetails.prod.price}} 
+        </div>     
+        <div flex="50" class="grey detail">
+            <label class="control-label">Active: </label> {{apcDetails.prod.active}} 
+        </div>  
+    </div>
+    
+    <div id="prod_detail" layout="row" >
+        <div flex="100" class="grey detail">
+           <label class="control-label">Description: </label> {{apcDetails.prod.descripton}} 
+        </div>         
+    </div>
+    
+     <div id="prod_detail" layout="row" >
+        <div flex="100" class="grey detail">
+           <label class="control-label">Images: </label>
+        </div>         
+    </div>
+    
+    <!-- 
+    <div id="image_blk" ng-repeat="img in apcDetails.prod.images">
+    	
+    		 <div flex="100" class="grey detail">
+	             <img ng-src="images/{{img}}" class="md-card-image" alt="{{img}}">
+	        </div>
+     </div>
+     -->
+    <div id="image_blk" ng-repeat="img in apcDetails.prod.images" ng-if="$index % 3 == 0">
+    	 <div id="img_row" layout="row" >
+	   		 <div flex="33" class="grey detail">
+	             <img ng-src="images/{{img}}" class="md-card-image">
+	         </div>
+	        
+	         <div flex="33" class="grey detail">
+	             <img ng-src="images/{{apcDetails.prod.images[$index+1]}}" class="md-card-image" >
+	        </div>
+	 		<div flex="33" class="grey detail">
+	             <img ng-src="images/{{apcDetails.prod.images[$index+2]}}" class="md-card-image" >
+	        </div>
+	    </div>
+    </div>
+            
+    <div class="control-group">
+        <hr />
+        <div class="controls" align="center">
+            <button type="button" class="btn btn-primary" ng-click="apcDetails.editProd()">Edit Product</button>
+        </div>
+    </div>
+ 	

@@ -1,0 +1,74 @@
+<div class="alert alert-error" ng-show="plc.error">
+    {{plc.errorMessage}}
+</div>
+
+<h3 align="left">Products List</h3>
+<hr />
+ <div class="control-group">
+    	<table >
+    		<tr>
+    			<td> 
+    				<label class="control-label" for="inputCategory">View by Category: </label>    			
+    			</td>
+		        <td >
+		        	<select id="inputCategory" ng-options="pcat.name for pcat in plc.pcats" ng-model="plc.selectedPcat"></select>	 
+		        </td>				        	
+		        <td>
+		        	<select ng-options="cat.name for cat in plc.selectedPcat.cats"  ng-change="plc.loadProdByCat(cat)" ng-model="plc.selectedCat" required></select>	
+		        </td>
+	        </tr>
+        </table>
+    </div>
+<div class="alert alert-info" ng-show="plc.products.length == 0">
+    No Products found
+</div>
+<table class="table table-bordered table-striped" ng-show="plc.products.length > 0">
+    <thead>
+        <tr>
+           <!--  <th style="text-align: center; width: 25px;">Id</th> -->
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Description</th>
+            <th style="text-align: center;">Brand</th>   
+            <th style="text-align: center;">Origin</th>               
+            <th style="text-align: center;">Category</th>
+            <th style="text-align: center;">Price</th>
+            <th style="text-align: center;">New Arrival?</th>            
+            <th style="text-align: center;">OnSale?</th>
+            <th style="text-align: center;">Discount Rate</th>
+            <th style="text-align: center;">Hot Item?</th>    
+            <th style="text-align: center;">Active?</th>                            
+            <th style="text-align: center;">Image</th>            
+            <th style="text-align: center;" colspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="prod in plc.products | orderBy:predicate">
+          <!--   <td style="text-align: center;">{{prod.productNo}}</td>  -->
+            <td>{{prod.name}}</td>
+            <td>{{prod.descripton}}</td>
+            <td>{{prod.manufacturer}}</td>
+            <td>{{prod.country}}</td>
+            <td>{{prod.cat.parent.name}}>>{{prod.cat.name}}</td>
+            <td>{{prod.price}}</td>
+            <td>{{prod.isNew}}</td>      
+            <td>{{prod.onSale}}</td>    
+            <td>{{prod.discountRate}}</td>
+            <td>{{prod.isHot}}</td>    
+            <td>{{prod.active}}</td>                                      
+            <td style="text-align: center;width: 20px;"><span ng-show="prod.imageId" class="icon-ok"></span></td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-success" ng-click="plc.viewProdDetails(prod)">View Details</button>
+            </td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-success" ng-click="plc.editProd(prod)">Edit</button>
+            </td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-danger" ng-click="plc.removeProd(prod.productNo)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <a href="#"><img data-ng-src="images/sushi.jpg" alt="Generic placeholder image" class="img-circle"></a>
+</div>
+

@@ -1,0 +1,131 @@
+<div class="alert alert-error" ng-show="prodCtrl.error">
+    {{prodCtrl.errorMessage}}
+</div>
+<form name="prodForm" class="form-horizontal">
+	<table class="table table-bordered ">
+    <tr>
+    	<td>          
+		    <div class="control-group">
+		        <label class="control-label" for="inputName" redstar>Product Name</label>
+		        <div class="controls">
+		            <input type="text" id="inputName" ng-model="prodCtrl.prod.name" placeholder="ProductName" required min="2" />
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputDesc" redstar>Description</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputDesc" ng-model="prodCtrl.prod.descripton" placeholder="Descripton" required min="1" />
+		            <!-- <span class="add-on">km/h</span>  -->
+		        </div>
+		    </div>
+		</td>   
+    	<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputManufacturer" redstar>Manufacturer/Brand</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputManufacturer" ng-model="prodCtrl.prod.manufacturer" placeholder="Manufacturer" required/>
+		        </div>
+		    </div>
+		</td>
+	</tr>
+   	<tr>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputOrigin">Origin/Country</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputOrigin" ng-model="prodCtrl.prod.country" placeholder="Origin"/>
+		        </div>
+		    </div>
+	    </td>
+	
+		<td>
+		    <div class="control-group">
+		    	<label class="control-label" for="inputCategory" redstar>Category</label>
+		    	<table >
+		    		<tr>
+				        <td >
+				        	<select id="inputCategory" ng-options="pcat.name for pcat in prodCtrl.pcats" ng-model="prodCtrl.selectedPcat" required></select>	 
+				        </td>				        	
+				        <td>
+				        	<select ng-options="cat.name for cat in prodCtrl.selectedPcat.cats" onselect="prodCtrl.setProdCat(cat)" ng-model="prodCtrl.selectedCat" required></select>	
+				        </td>
+			        </tr>
+		        </table>
+		    </div>
+	    </td>
+	    <td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputPrice" redstar>Price</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputPrice" ng-model="prodCtrl.prod.price" placeholder="Price" required />
+		        </div>
+		    </div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		    <div class="control-group">
+			    <div class="controls">
+		            <label class="control-label" for="inputNew"> 
+		              	<input id="inputNew" type="checkbox" ng-model="prodCtrl.prod.isNew"/> New Arrival 
+		            </label>
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		    	<div class="controls">
+		        	<label class="control-label" for="inputOnSale">
+		        		<input id="inputOnSale" type="checkbox" ng-model="prodCtrl.prod.onSale" /> OnSale
+		       		</label>
+		       		<label>
+		       			<input type="text" id="inputDiscount" ng-model="prodCtrl.prod.discountRate" ng-hide="!prodCtrl.prod.onSale" placeholder="Discount rate" />
+		       		</label>
+		        </div>
+		    </div>
+    	</td>
+  
+    	<td>
+		    <div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputHot">
+			            <input id="inputHot" type="checkbox" ng-model="prodCtrl.prod.isHot"/> Put on Hot		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	</tr>
+    <tr>
+	   <td>
+	   		<div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputActive">
+			            <input id="inputActive" type="checkbox" ng-model="prodCtrl.prod.active"/> Active		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	   <td colspan="2">
+	   		<div class="control-group">
+	   			<label class="control-label" for="inputPrice">Add Image</label>
+		        	<div class="controls">
+			   			<input type="file" file-model="prodCtrl.myFile"/>
+			    		<!-- <button ng-click="prodCtrl.uploadFile()">upload me</button> -->
+					</div>	
+			</div>  
+	   </td>
+	</tr>
+	</table>
+
+    <div class="control-group">
+        <hr />
+        <div class="controls" align="center">
+            <button type="button" class="btn btn-primary" ng-disabled="!prodCtrl.prod.name || prodForm.$invalid" ng-hide="prodCtrl.editMode" ng-click="prodCtrl.addNewProd()">Add Product</button>
+            <button type="button" class="btn btn-primary" ng-disabled="!prodCtrl.prod.name || prodForm.$invalid" ng-show="prodCtrl.editMode" ng-click="prodCtrl.updateProd()">Save Product</button>
+            <button type="button" class="btn" ng-click="prodCtrl.resetProdForm()">Reset</button>
+        </div>
+    </div>
+</form>
+ 	

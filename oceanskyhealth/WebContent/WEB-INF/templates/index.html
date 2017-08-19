@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" ng-app="thisApp">
+<head>
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1">
+    
+    <title>Service App</title>
+    <link rel="stylesheet" href="resources/css/app.css"/>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="resources/css/angular-material.css" />
+   <!--  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  --> 
+    
+</head>
+<body>
+<!-- 
+	<ng-include src="'components/header.html'"></ng-include>
+
+    <ui-view></ui-view>
+
+    <ng-include src="'components/footer.html'"></ng-include>
+
+    <ng-include src="'components/_partials/_modal_search.html'"></ng-include>
+ -->
+
+
+
+<div id="layoutContainer"  ng-cloak layout-wrap>
+	<div id="header" layout="row" >
+         <div flex="80" class="green box">
+            [Company Logo and Slogan ... ]
+         </div>
+         <div flex="20" class="blue box">
+            [Login / Register ]
+         </div>
+    </div>
+    <div id="manu_bar" layout="row" style="height:40px;">
+         <div flex="90" class="blue box">
+            
+            	[Main Menu]        		
+     		        
+         </div>
+         <div flex="10" class="blue box">
+            [My Cart]           
+         </div>
+    </div>  
+         
+    <div id="main_content" layout="row" style="min-height: 300px;">     
+         <div flex="20" class="blue box">
+            <ul class="md-menu">
+    			<li><a ui-sref="catTree">View Category</a></li>
+				<li><a ui-sref="prodList">View Products</a></li>
+				<li>Create New Category</li>
+				<li><a ui-sref="prodNew">Create New Product</a></li>
+			</ul>
+         </div>
+          <div flex="80" >   
+          <md-content flex layout-padding class="grey box" ui-view="">
+          </md-content>    
+         </div>
+    </div>
+    <div id="footer" layout="row">
+         <div flex="100" class="green box">
+           <p> [footer line1 ]</p>
+            <p> [footer lin2 ]</p>  
+         </div>
+   </div>
+</div>
+
+<!-- 
+<table border="1" >	
+  	<col width="20%">
+  	<col width="80"%>
+	<tr id="header">
+		<td colspan="2"><div>This is the Header</div></td>
+	</tr>
+	
+	<tr>
+		<td>
+			<div>
+			 	<ul >
+	    			<li>View Category</li>
+					<li><a ui-sref="prodList">View Products</a></li>
+					<li>Create New Category</li>
+					<li>Create New Product</li>
+				</ul>
+			</div>
+		</td>
+		
+		<td>
+			<div ui-view=""></div>
+		</td>
+	</tr>	
+ -->
+</table>
+</div>
+
+<!--  
+<div>
+    <ul class="menu">
+    	<li><a ui-sref="products">Products Management</a></li>
+    	<li><a ui-sref="categories">Category Management</a></li>
+    </ul>
+    <hr class="" />
+    <div ui-view=""></div>
+</div>
+-->
+
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="resources/js/lib/angular/angular.js"></script>
+<script src="resources/js/lib/angular/angular-ui-router.js"></script>
+<script src="resources/js/lib/angular/ng-file-upload-all.min.js"></script>
+<script src="resources/js/lib/angular/ng-file-upload-shim.min.js"></script>
+<script src="resources/js/lib/angular/angular-resource.min.js"></script>
+<script src="resources/js/lib/angular/angular-aria.min.js"></script>
+<script src="resources/js/lib/angular/angular-material.min.js"></script>
+<script src="resources/js/lib/angular/angular-animate.min.js"></script>
+<script src="resources/js/lib/angular/angular-route.min.js"></script>
+<script src="resources/js/lib/angular/angular-touch.js"></script>
+<!-- <script src="resources/js/lib/angular/ui-bootstrap-tpls-2.0.1.min.js"></script>  -->
+
+<script src="resources/js/app.js"></script>
+<script src="resources/js/services.js"></script>
+<script src="resources/js/filters.js"></script>
+<script src="resources/js/directives.js"></script>
+<script src="resources/js/controllers/AdminProdController.js"></script>
+<script src="resources/js/controllers/AdminEditProdController.js"></script>
+<script src="resources/js/controllers/CatController.js"></script>
+<script src="resources/js/controllers/AdminProdDetailController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<div class="alert alert-error" ng-show="aplc.error">
+    {{aplc.errorMessage}}
+</div>
+
+<h3 align="center">Products List</h3>
+<hr />
+ <div class="control-group">
+    	<table >
+    		<tr>
+    			<td> 
+    				<label class="control-label" for="inputCategory">View by Category: </label>    			
+    			</td>
+		        <td >
+		        	<select id="inputCategory" ng-options="pcat.name for pcat in aplc.pcats" ng-model="aplc.selectedPcat"></select>	 
+		        </td>				        	
+		        <td>
+		        	<select ng-options="cat.name for cat in aplc.selectedPcat.cats"  ng-change="aplc.loadProdByCat(cat)" ng-model="aplc.selectedCat" required></select>	
+		        </td>
+	        </tr>
+        </table>
+    </div>
+<div class="alert alert-info" ng-show="aplc.products.length == 0">
+    No Products found
+</div>
+<table class="table table-bordered table-striped" ng-show="aplc.products.length > 0">
+    <thead>
+        <tr>
+           <!--  <th style="text-align: center; width: 25px;">Id</th> -->
+            <th style="text-align: center;">Name</th>
+            <!--  <th style="text-align: center;">Description</th> -->
+            <th style="text-align: center;">Brand</th>   
+       <!--     <th style="text-align: center;">Origin</th>           
+            <th style="text-align: center;">Category</th> -->
+            <th style="text-align: center;">Price</th>
+            <th style="text-align: center;">New Arrival?</th>            
+            <th style="text-align: center;">OnSale?</th>
+       <!--     <th style="text-align: center;">Discount Rate</th> -->
+            <th style="text-align: center;">Hot Item?</th>    
+            <th style="text-align: center;">Active?</th>                            
+            <th style="text-align: center;" colspan="3">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="prod in aplc.products | orderBy:predicate">
+          <!--   <td style="text-align: center;">{{prod.productNo}}</td>  -->
+            <td>{{prod.name}}</td>
+          <!--   <td>{{prod.descripton}}</td>  -->
+            <td>{{prod.manufacturer}}</td>
+          <!--  <td>{{prod.country}}</td> -->
+          <!--  <td>{{prod.cat.parent.name}}>>{{prod.cat.name}}</td> -->
+            <td>{{prod.price}}</td>
+            <td>{{prod.new}}</td>      
+            <td>{{prod.onSale}}</td>    
+       <!--      <td>{{prod.discountRate}}</td> -->
+            <td>{{prod.hot}}</td>    
+            <td>{{prod.active}}</td>                     
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-success" ng-click="aplc.viewProdDetails(prod, $index)">Details</button>
+            </td>                 
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-success" ng-click="aplc.editProd(prod, $index)">Edit</button>
+            </td>
+            <td style="width:100px;text-align: center;">
+                <button class="btn btn-mini btn-danger" ng-click="aplc.removeProd(prod.productNo)">Remove</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+

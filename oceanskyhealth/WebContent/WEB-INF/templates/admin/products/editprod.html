@@ -1,0 +1,146 @@
+<div class="alert alert-error" ng-show="apclEdit.error">
+    {{apclEdit.errorMessage}}
+</div>
+<form name="prdForm" class="form-horizontal">
+	<table class="table table-bordered ">
+    <tr>
+    	<td>          
+		    <div class="control-group">
+		        <label class="control-label" for="inputName" redstar>Product Name</label>
+		        <div class="controls">
+		            <input type="text" id="inputName" ng-model="apclEdit.prod.name" placeholder="ProductName" required min="2" />
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputDesc" redstar>Description</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputDesc" ng-model="apclEdit.prod.descripton" placeholder="Descripton" required min="1" />
+		            <!-- <span class="add-on">km/h</span>  -->
+		        </div>
+		    </div>
+		</td>   
+    	<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputManufacturer" redstar>Manufacturer/Brand</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputManufacturer" ng-model="apclEdit.prod.manufacturer" placeholder="Manufacturer" required/>
+		        </div>
+		    </div>
+		</td>
+	</tr>
+   	<tr>
+		<td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputOrigin">Origin/Country</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputOrigin" ng-model="apclEdit.prod.country" placeholder="Origin"/>
+		        </div>
+		    </div>
+	    </td>
+	
+		<td>
+		    <div class="control-group">
+		    	<label class="control-label" for="inputCategory" redstar>Category</label>
+		    	<table >
+		    		<tr>
+				        <td >
+				        	<select id="inputCategory" ng-options="pcat.name for pcat in apclEdit.pcats" ng-model="apclEdit.selectedPcat" required></select>	 
+				        </td>				        	
+				        <td>
+				        	<select ng-options="cat.name for cat in apclEdit.selectedPcat.cats" onselect="apclEdit.setProdCat(cat)" ng-model="apclEdit.selectedCat" required></select>	
+				        </td>
+			        </tr>
+		        </table>
+		    </div>
+	    </td>
+	    <td>
+		    <div class="control-group">
+		        <label class="control-label" for="inputPrice" redstar>Price</label>
+		        <div class="controls">
+		            <input class="span3" type="text" id="inputPrice" ng-model="apclEdit.prod.price" placeholder="Price" required />
+		        </div>
+		    </div>
+		</td>
+	</tr>
+	<tr>
+		<td>
+		    <div class="control-group">
+			    <div class="controls">
+		            <label class="control-label" for="inputNew"> 
+		              	<input id="inputNew" type="checkbox" ng-model="apclEdit.prod.new"/> New Arrival 
+		            </label>
+		        </div>
+		    </div>
+		</td>
+		<td>
+		    <div class="control-group">
+		    	<div class="controls">
+		        	<label class="control-label" for="inputOnSale">
+		        		<input id="inputOnSale" type="checkbox" ng-model="apclEdit.prod.onSale" /> OnSale
+		       		</label>
+		       		<label>
+		       			<input type="text" id="inputDiscount" ng-model="apclEdit.prod.discountRate" ng-hide="!apclEdit.prod.onSale" placeholder="Discount rate" />
+		       		</label>
+		        </div>
+		    </div>
+    	</td>
+  
+    	<td>
+		    <div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputHot">
+			            <input id="inputHot" type="checkbox" ng-model="apclEdit.prod.hot"/> Put on Hot		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	</tr>
+    <tr>
+	   <td>
+	   		<div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="inputActive">
+			            <input id="inputActive" type="checkbox" ng-model="apclEdit.prod.active"/> Active		        
+			        </label>
+		        </div>
+		    </div>
+	   </td>
+	   <td colspan="2">
+	   		<div class="control-group">
+	   			<label class="control-label" for="inputPrice">Add Image</label>
+		        	<div class="controls">
+			   			<input type="file" file-model="apclEdit.myFile"/>
+			    		<!-- <button ng-click="apclEdit.uploadFile()">upload me</button> -->
+					</div>	
+			</div>  
+	   </td>
+	</tr>
+	<tr ng-repeat="img in apclEdit.prod.images">
+		<td colspan="2">
+	   		 <div>
+	             <img ng-src="images/{{img}}" class="md-card-image">
+	         </div>       
+	    </td>
+	    <td>
+	   		 <div class="control-group">
+		    	<div class="controls">
+			        <label class="control-label" for="deletImage">
+			            <input id="deletImage" type="checkbox" ng-change="apclEdit.markImgForDelete(img)" ng-model="apclEdit.imageSelected"/> Delete		        
+			        </label>
+		        </div>
+		    </div>    
+	    </td>
+    </tr>
+	</table>
+
+    <div class="control-group">
+        <hr />
+        <div class="controls" align="center">
+           <!--  <button type="button" class="btn btn-primary" ng-disabled="!apclEdit.prod.name || prdForm.$invalid" ng-hide="apclEdit.editMode" ng-click="apclEdit.addNewProd()">Add Product</button>  -->
+            <button type="button" class="btn btn-primary" ng-disabled="!apclEdit.prod.name || prdForm.$invalid" ng-click="apclEdit.updateProd()">Save Product</button>
+        </div>
+    </div>
+</form>
+ 	

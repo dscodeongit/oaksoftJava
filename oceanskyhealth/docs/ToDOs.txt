@@ -1,0 +1,5 @@
+1. Admin page:
+	- add search by product name
+	- add search by product type
+	- add delete image 
+	- add view prod detail page (with modification)
