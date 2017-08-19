@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Messaging>
+	<JMS>
+		<Tibco>
+			<US>
+				<Development>
+					
+					<ConnectionNode alias="tibco-mom-vd1" url="tcp://tibco-mom-vd1.oaksoft.com:7222" user="admin" password="" pollInterval="5000" noSqlDbName="MomMonitor">
+						<Monitors>
+							<Monitor name="queueInfo" type="default"/>
+							<Monitor name="topicInfo" type="default"/>
+							<Monitor name="durableInfo" type="default"/>
+							<Monitor name="connectionInfo" type="default"/>
+						</Monitors>
+						<Queues>
+							<Queue name="q.MO10035.post-trade.fix1.in"/>
+							<Queue name="q.MO10035.post-trade.fix.out"/>
+							
+						</Queues>
+						<Topics>
+							<Topic name="g.t.I-TEST.post-trade.fix.in"/>
+							<Topic name="g.t.MO10035.post-trade.fix.in"/>
+						</Topics>
+
+						<Durables>
+						
+							<Durable name="g.t.MO10080.post-trade.fix.in"/>
+						
+						</Durables>
+					</ConnectionNode>
+
+				</Development>				
+				
+			</US>
+		</Tibco>
+	</JMS>
+</Messaging>

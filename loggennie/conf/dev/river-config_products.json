@@ -1,0 +1,67 @@
+{
+	"type": "mongodb",
+	"mongodb": {
+		"servers": [
+			{ 
+				host: "localhost",
+				port: "27017"
+			},
+			{ 
+				host: "localhost",
+				port: "27018"
+			},
+			{ 
+				host: "localhost",
+				port: "27019"
+			}
+		],
+		"options": {
+			"connect_timeout": 11000,
+			"secondary_read_preference": true,
+			"include_collection": "products",
+			"exclude_fields": ["brand", "additional_tarriffs", "limits.data.units"],
+			"advanced_transformation": true,
+			"parent_types": ["parent1", "parent2"]
+		},		
+				
+		db: "pcat",
+		collection: "products",
+		gridfs: "false"
+	},
+	elastic: {
+		cluster: {
+			name: "elasticsearch",
+			network_host: "localhost",
+			nodes : [
+				{
+					host: "localhost",				
+					port: 9300
+				},
+				{
+					host: "localhost",				
+					port: 9301
+				},
+				{
+					host: "localhost",				
+					port: 9302
+				}
+			]
+		},
+		
+		index: {
+			manage_template: true,
+			template_overwrite: true,
+			template_name: "loggenie-mongo-river",
+			template: "elasticsearch-loggenie-river-template.json",
+			name: "pcat.river",
+			type: "Products",
+			throttle_size: 2000,
+			bulk_size:200,
+			concurrent_bulk_requests: 40
+		}
+	},	
+	onfailure: {
+		restart: true,
+		max_restart: 5
+	}
+}

@@ -1,0 +1,24 @@
+{
+   
+    "content" : {
+        "apiVersion" : "%X{content.apiVersion}",
+        "createDate" : "%X{content.createDate}",
+        "modifiedDate" : "%X{content.modifiedDate}",
+        "modifiedBy" : "%X{content.modifiedBy}",
+        "transactionStatus" : "%X{content.transactionStatus}",
+        "id" : "%X{content.id}",
+        "count" : "%X{content.count}",
+        "entry" : [
+            {
+                "id" : "%X{content.entry[0].id}",
+                "sourceURI" : "%X{content.entry[0].sourceURI}",
+                "sourceLocation" : "%X{content.entry[0].sourceLocation}",
+                "correlationId" : "%X{content.entry[0].correlationId}",
+                "contentType" : "%X{content.entry[0].contentType}",
+                "codec" : "%X{content.entry[0].codec}",
+                "sequence" : "%X{content.entry[0].sequence}",
+                "payload" : "%X{content.entry[0].payload}"
+            }
+        ]
+    }
+}

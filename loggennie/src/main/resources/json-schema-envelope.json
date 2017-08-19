@@ -1,0 +1,18 @@
+{
+    "_id" : "%X{_id}",
+    "content" : {
+        "apiVersion" : "%X{content.apiVersion}",
+        "createDate" : "%X{content.createDate}",
+        "modifiedDate" : "%X{content.modifiedDate}",
+        "modifiedBy" : "%X{content.modifiedBy}",
+        "transactionStatus" : "%X{content.transactionStatus}",       
+        "entry" : 
+            {
+                "id" : "%X{content.entry.id}",
+                "sourceURI" : "%X{content.entry.sourceURI}",
+                "sourceLocation" : "%X{content.entry.sourceLocation}",
+                "contentType" : "%X{content.entry.contentType}",
+                "payload" : "%X{content.entry.payload}"
+            }
+       }
+}

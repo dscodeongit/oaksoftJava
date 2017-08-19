@@ -1,0 +1,15 @@
+#getClass class
+getClientID clientID
+getConsumerID consumerID
+getDeliveredMessageCount deliveredMessageCount
+getDurableName durableName
+getPendingMessageCount pendingMessageCount
+getPendingMessageSize pendingMessageSize
+getSelector selector
+getTopicName topicName
+getUserName userName
+isActive active
+#isConnected connected
+isNoLocalEnabled noLocalEnabled
+#isShared shared
+isStatic static

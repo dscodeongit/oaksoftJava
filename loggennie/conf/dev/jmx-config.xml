@@ -1,0 +1,241 @@
+<config>
+	<JMX>	
+			 
+		<ConnectionNode alias="mylab-d7" url="mylab-d7.oaksoft.com:9119" path="jmxrmi" user="admin" password="" pollInterval="5000" >
+			<Monitors> 				
+ 				<Monitor name="ParNew" type="GarbageCollector" > 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				
+ 				<Monitor name="MarkSweepCompact" type="GarbageCollector"> 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				
+ 				<Monitor name="Par Eden Space" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				 				
+ 				<Monitor name="Par Survivor Space" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" measures="committed|init" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="Tenured Gen" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="Code Cache" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor type="Memory">  				
+ 					<Metrics>
+ 						<Metric name="HeapMemoryUsage" compositeType="true" /> 			
+ 						<Metric name="NonHeapMemoryUsage" compositeType="true" /> 
+ 					</Metrics> 				
+ 				</Monitor>
+ 				
+ 				<Monitor type="OperatingSystem"> 
+ 					<Metrics>
+ 						<Metric name="CommittedVirtualMemorySize" /> 							
+ 						<Metric name="FreePhysicalMemorySize" />
+ 						<Metric name="TotalPhysicalMemorySize" /> 		
+ 						<Metric name="AvailableProcessors" />	
+ 						<Metric name="ProcessCpuLoad" /> 							
+ 						<Metric name="ProcessCpuTime" />
+ 						<Metric name="SystemCpuLoad" /> 	
+ 						<Metric name="FreeSwapSpaceSize" /> 	
+ 						<Metric name="TotalSwapSpaceSize" /> 	
+ 						<Metric name="OpenFileDescriptorCount" /> 	 
+ 						<Metric name="MaxFileDescriptorCount" /> 	
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor type="Threading"> 
+ 					<Metrics>
+ 						<Metric name="ThreadCount" /> 							
+ 						<Metric name="CurrentThreadCpuTime" /> 			
+ 						<Metric name="CurrentThreadUserTime" />
+ 						<Metric name="PeakThreadCount" />	
+ 						<Metric name="TotalStartedThreadCount" />
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="&quot;application totals&quot;" type="Application" mbeanType="Mule..agent"> 
+ 					<Metrics>
+ 						<Metric name="AverageProcessingTime"/>
+ 						<Metric name="MaxProcessingTime"/> 	
+ 						<Metric name="MinProcessingTime"/> 	 
+ 						<Metric name="TotalProcessingTime" />
+ 						<Metric name="ProcessedEvents" />	
+ 						<Metric name="TotalEventsReceived" />						
+ 						<Metric name="ExecutionErrors"/>
+ 						<Metric name="FatalErrors"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				
+			</Monitors>			
+		</ConnectionNode>
+		
+		<ConnectionNode alias="mylab-d8" url="mylab-d8.oaksoft.com:9119" path="jmxrmi" user="admin" password="" pollInterval="5000" >
+			<Monitors> 				
+ 				<Monitor name="PS MarkSweep" type="GarbageCollector" > 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				
+ 				<Monitor name="PS Scavenge" type="GarbageCollector"> 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				
+ 				<Monitor name="PS Eden Space" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="PS Old Gen" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="PS Perm Gen" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true"/> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="PS Survivor Space" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" measures="committed|init" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor name="Code Cache" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor type="Memory"> 
+ 					<Metrics>
+ 						<Metric name="HeapMemoryUsage" compositeType="true" /> 
+ 						<Metric name="NonHeapMemoryUsage" compositeType="true" /> 
+ 					</Metrics> 				
+ 				</Monitor>
+ 				
+ 				<Monitor type="OperatingSystem"> 
+ 					<Metrics>
+ 						<Metric name="CommittedVirtualMemorySize" /> 							
+ 						<Metric name="FreePhysicalMemorySize" />
+ 						<Metric name="TotalPhysicalMemorySize" /> 		
+ 						<Metric name="AvailableProcessors" />	
+ 						<Metric name="ProcessCpuLoad" /> 							
+ 						<Metric name="ProcessCpuTime" />
+ 						<Metric name="SystemCpuLoad" /> 	
+ 						<Metric name="FreeSwapSpaceSize" /> 	
+ 						<Metric name="TotalSwapSpaceSize" /> 	
+ 						<Metric name="OpenFileDescriptorCount" /> 	 
+ 						<Metric name="MaxFileDescriptorCount" /> 	
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor type="Threading"> 
+ 					<Metrics>
+ 						<Metric name="ThreadCount" /> 							
+ 						<Metric name="CurrentThreadCpuTime" /> 			
+ 						<Metric name="CurrentThreadUserTime" />
+ 						<Metric name="PeakThreadCount" />	
+ 						<Metric name="TotalStartedThreadCount" />	
+ 					</Metrics>
+ 				</Monitor>
+ 				 				
+ 				<Monitor name="&quot;*&quot;" type="Application" mbeanType="Mule.*"/> 
+ 					
+ 				<Monitor name="&quot;*&quot;" type="Flow" mbeanType="Mule.*"/> 
+ 				
+			</Monitors>			
+		</ConnectionNode>
+				
+		<ConnectionNode alias="mylab-d9" url="mylab-d8.oaksoft.com:9119" path="jmxrmi" user="admin" password="" pollInterval="5000" >
+			<Monitors> 				
+ 				<Monitor name="*" type="GarbageCollector" > 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 				<Monitor name="*" type="MemoryPool"/> 
+ 				
+ 				<!-- 
+ 				<Monitor name="PS Scavenge" type="GarbageCollector"> 
+ 					<Metrics>
+ 						<Metric name="CollectionCount" compositeType="false"/>
+ 						<Metric name="CollectionTime" compositeType="false"/>
+ 					</Metrics>
+ 				</Monitor> 
+ 							
+ 				<Monitor name="PS Old Gen" type="MemoryPool"> 
+ 					<Metrics>
+ 						<Metric name="Usage" compositeType="true" /> 
+ 					</Metrics>
+ 				</Monitor>
+ 				-->
+ 				<Monitor type="Memory">  				
+ 					<Metrics>
+ 						<Metric name="HeapMemoryUsage" compositeType="true" /> 			
+ 						<Metric name="NonHeapMemoryUsage" compositeType="true" /> 
+ 					</Metrics>
+ 				
+ 				</Monitor>
+ 				
+ 				<Monitor type="OperatingSystem"> 
+ 					<Metrics>
+ 						<Metric name="CommittedVirtualMemorySize" /> 							
+ 						<Metric name="FreePhysicalMemorySize" />
+ 						<Metric name="TotalPhysicalMemorySize" /> 		
+ 						<Metric name="AvailableProcessors" />	
+ 						<Metric name="ProcessCpuLoad" /> 							
+ 						<Metric name="ProcessCpuTime" />
+ 						<Metric name="SystemCpuLoad" /> 	
+ 						<Metric name="FreeSwapSpaceSize" /> 	
+ 						<Metric name="TotalSwapSpaceSize" /> 	
+ 						<Metric name="OpenFileDescriptorCount" /> 	 
+ 						<Metric name="MaxFileDescriptorCount" /> 	
+ 					</Metrics>
+ 				</Monitor>
+ 				
+ 				<Monitor type="Threading"> 
+ 					<Metrics>
+ 						<Metric name="ThreadCount" /> 							
+ 						<Metric name="CurrentThreadCpuTime" /> 			
+ 						<Metric name="CurrentThreadUserTime" />
+ 						<Metric name="PeakThreadCount" />	
+ 						<Metric name="TotalStartedThreadCount" />						
+ 					</Metrics>
+ 				</Monitor>
+ 				
+			</Monitors>			
+		</ConnectionNode>
+	
+	</JMX>
+</config>

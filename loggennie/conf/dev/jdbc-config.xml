@@ -1,0 +1,116 @@
+<config>
+	<JDBC>		
+
+		<ConnectionNode alias="sybusesdev04" url="jdbc:sybase:Tds:sybusesdev04.oaksoft.com:4000/tempdb?IGNORE_DONE_IN_PROC=true&amp;DYNAMIC_PREPARE=true" driver="com.sybase.jdbc4.jdbc.SybDriver" user="" password="" min-poolsize="1" max-poolsize="1" conn-timeout="1000" pollInterval="60000" reconnectLimit = "5" reconnectInterval="10000">
+                <Monitors>
+                        <Monitor name="sybmon" type="process">
+                              <query>
+                                     SELECT 
+									    spid 'PID'
+									   ,fid 'FID'
+									   ,status 'Status'
+									   ,SUSER_NAME(suid) 'User'
+									   ,CASE clienthostname 
+									        WHEN '' THEN hostname         
+									        WHEN NULL THEN hostname                 
+									        ELSE clienthostname 
+									    END  'Host'
+									   ,CASE clientapplname 
+									        WHEN '' THEN program_name 
+									        WHEN NULL THEN program_name 
+									        ELSE clientapplname 
+									    END 'Program'
+									   ,memusage 'MemUsage'
+									   ,cpu 'CPUTime'
+									   ,physical_io 'I/O'
+									   ,blocked 'BlockedSpid'
+									   ,DB_NAME(dbid) 'Database'
+									   ,cmd 'Command'
+									   ,tran_name 'Transaction'
+									   ,time_blocked 'TimeBlocked'
+									   ,network_pktsz 'NetworkPacketSize'
+									   ,block_xloid 'LockOwnerId'
+									   ,ipaddr 'IPAddress' 
+									 FROM master.dbo.sysprocesses ORDER by 3
+                                      
+                                </query>
+                        </Monitor>
+                        
+                        <Monitor name="sybmon" type="lock">
+                              <query>
+                                     SELECT 
+								     L.spid 'PID'
+								    ,L.fid 'FID'
+								    ,P.status 'Status'
+								    ,V.name 'Lock Type'
+								    ,SUSER_NAME(P.suid) 'User'
+								    ,DB_NAME(L.dbid) 'Database'
+								    ,OBJECT_NAME(L.id,L.dbid) 'Object Name'
+								    ,L.page 'Lock Page'
+								    ,L.class 'Lock Class'
+								    ,CASE P.clienthostname 
+								        WHEN '' THEN P.hostname 
+								        WHEN NULL THEN P.hostname 
+								        ELSE P.clienthostname 
+								     END  'Host'
+								    ,CASE P.clientapplname WHEN '' THEN P.program_name 
+								        WHEN NULL THEN P.program_name 
+								        ELSE P.clientapplname 
+								     END  'Program'
+								     ,P.cmd 'Command'
+								     ,P.cpu 'CPU Time'
+								     ,P.physical_io 'I/O'
+								     ,P.memusage 'Mem Usage'
+								     ,P.tran_name  'Transaction' 
+								     FROM master.dbo.syslocks L, master.dbo.sysprocesses P, master.dbo.spt_values V 
+								     WHERE L.spid=P.spid 
+								     AND L.type=V.number 
+								     AND V.type='L' 
+								     ORDER BY 1                                      
+                                </query>
+                        </Monitor>
+                        
+                        <Monitor name="sybmon" type="block">
+                              <query>
+                                     SELECT 
+									     H.spid 'Holding ID'
+									    ,H.fid 'Holding FID'
+									    ,SUSER_NAME(H.suid) 'Holding User'
+									    ,W.spid 'Waiting ID'
+									    ,W.fid 'Waiting FID'
+									    ,SUSER_NAME(W.suid) 'Waiting User'
+									    ,H.status 'Status'
+									    ,V.name 'Lock Type'
+									    ,W.time_blocked 'Time Blocked'
+									    ,DB_NAME(L.dbid) 'Database' 
+									    ,OBJECT_NAME(L.id,L.dbid) 'Object Name' 
+									    ,L.page 'Lock Page'
+									    ,L.class 'Lock Class'
+									    ,H.hostname 'Holding Host'
+									    ,W.hostname 'Waiting Host'
+									    ,H.program_name 'Holding Program'
+									    ,W.program_name 'Waiting Program'
+									    ,H.cmd 'Holding Command'
+									    ,W.cmd 'Waiting Command' 
+									    ,H.cpu 'Machine'
+									    ,H.physical_io 'I/O'
+									    ,H.memusage 'Mem Usage'
+									    ,H.tran_name 'Transaction' 
+									    
+									FROM 
+									    master.dbo.syslocks L
+									   ,master.dbo.sysprocesses H
+									   ,master.dbo.sysprocesses W
+									   ,master.dbo.spt_values V 
+									WHERE L.spid=W.blocked 
+									AND H.spid=W.blocked 
+									AND L.type=V.number 
+									AND V.type='L' 
+									ORDER BY 1                                     
+                                </query>
+                        </Monitor>
+                </Monitors>
+        </ConnectionNode>		        
+		
+	</JDBC>
+</config>

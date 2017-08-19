@@ -1,0 +1,85 @@
+{    
+  "products": {
+    "properties": {
+      "available": {
+        "type": "boolean"
+      },
+      "cancel_penalty": {
+        "type": "long"
+      },
+      "color": {
+        "type": "string"
+      },
+      "for": {
+        "type": "string"
+      },
+      "limits": {
+        "properties": {
+          "data": {
+            "properties": {
+              "n": {
+                "type": "double"
+              },
+              "over_rate": {
+                "type": "long"
+              }
+            }
+          },
+          "sms": {
+            "properties": {
+              "n": {
+                "type": "double"
+              },
+              "over_rate": {
+                "type": "long"
+              },
+              "units": {
+                "type": "string"
+              }
+            }
+          },
+          "voice": {
+            "properties": {
+              "n": {
+                "type": "long"
+              },
+              "over_rate": {
+                "type": "double"
+              },
+              "units": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "monthly_price": {
+        "type": "long"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "double"
+      },
+      "products": {
+        "type": "string"
+      },
+      "sales_tax": {
+        "type": "boolean"
+      },
+      "term_years": {
+        "type": "long"
+      },
+      "type": {
+        "type": "string"
+      },
+      "warranty_years": {
+        "type": "double"
+      },
+      "discount": {
+        "type": "double"
+      }
+    }
+  }    
+}
